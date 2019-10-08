@@ -10,7 +10,8 @@ const series = require('./routes/series')
 const mongo = process.env.MONGODB || 'mongodb://localhost/minhas-series'
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-
+app.send('ok')
+process.exit()
 //prepara pra receber valores no POST
 app.use(bodyParser.urlencoded({extended: true}))
 
