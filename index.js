@@ -25,6 +25,7 @@ app.set('view engine', 'ejs')
 app.use('/', pages)
 app.use('/series', series)
 
+
 mongoose
     .connect(mongo, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=>{
