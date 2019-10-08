@@ -32,7 +32,7 @@ mongoose
     .connect(mongo, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=>{
         app.listen(port, host, ()=> {
-            console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+            console.log("listening.....");
         })
     })
     .catch(e=>{
