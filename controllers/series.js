@@ -14,8 +14,7 @@ const novaProcess = async ({Serie}, req, res)=> {
     try{
     await serie.save()
     res.redirect('/series')
-    }catch(e
-        {
+    }catch(e){
         res.render('series/nova', {errors: Object.keys(e.errors)})    
     }
 }
