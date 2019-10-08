@@ -1,13 +1,15 @@
 const path = require('path')
 const express = require('express')
 const app = express()
+const host = '0.0.0.0';
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 
 const pages = require('./routes/pages')
 const series = require('./routes/series')
 
-const mongo = process.env.MONGODB || 'mongodb://localhost/minhas-series'
+// const mongo = process.env.MONGODB || 'mongodb://localhost/minhas-series'
+const mongo = process.env.MONGODB || `mongodb://${port}/minhas-series`
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
