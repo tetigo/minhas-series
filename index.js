@@ -9,7 +9,7 @@ const pages = require('./routes/pages')
 const series = require('./routes/series')
 
 // const mongo = process.env.MONGODB || 'mongodb://localhost/minhas-series'
-const mongo = process.env.MONGODB || `mongodb://${port}/minhas-series`
+const mongo = process.env.MONGODB || `mongodb://${host}/minhas-series`
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
