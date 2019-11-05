@@ -7,7 +7,7 @@
             <h2>Series</h2>
             <p class="lead">Todas as Séries Cadastradas <a href="/series/nova" class="btn btn-info">Nova Série</a></p>
             <table class="table table-hover">
-                <%series.forEach( serie =>{ %>
+                <%result.data.forEach( serie =>{ %>
                     <tr>
                       <td>
                         <a href="/series/info/<%=serie.id%>">
@@ -29,6 +29,24 @@
                     </tr>
                 <% }) %>
             </table>
+            Mostrar: <a href="/series?pageSize=10">10</a>
+            <a href="/series?pageSize=50">50</a>
+            <a href="/series?pageSize=100">100</a>
+            <a href="/series?pageSize=200">200</a>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <% if(result.pagination.currentPage > 0){ %>
+                        <li class="page-item"><a class="page-link" href="/series?page=<%=(result.pagination.currentPage-1)%>&pageSize=<%=result.pagination.pageSize%>">Previous</a></li>
+                        <% } %>
+                        <% for(let i = 0; i < result.pagination.pages; i++ ){ %>
+                            <li class="page-item <%if(i == result.pagination.currentPage){%>active<%}%>"><a class="page-link" href="/series?page=<%= i %>&pageSize=<%=result.pagination.pageSize%>"><%= i+1 %></a></li>
+                        <% } %>
+                        <% if(result.pagination.currentPage < result.pagination.pages-1){ %>
+                            <li class="page-item"><a class="page-link" href="/series?page=<%=result.pagination.currentPage+1%>&pageSize=<%=result.pagination.pageSize%>">Next</a></li>
+                        <% }%>
+                </ul>
+              </nav>
+        
           </div>
         </div>
       </div>

@@ -4,10 +4,31 @@ const labels = [
     {id: 'to-watch', name: 'Para assistir'},
 ]
 
+const pagination = async(model, conditions, params)=>{
+    const total = await model.count(conditions)
+    console.log(total)
+    const pageSize = parseInt(params.pageSize) || 20
+    const currentPage = parseInt(params.page) || 0
+    
+    const pagination = {
+        currentPage: currentPage,
+        pageSize: pageSize,
+        pages: parseInt(total / pageSize)
+    }
+    const results = await model
+                          .find(conditions)
+                          .skip(currentPage * pageSize)
+                          .limit(pageSize)
+    return {
+        data: results,
+        pagination
+    }
+}
 
 const index = async({Serie}, req, res)=> {
-    const docs = await Serie.find({})
-    res.render('series/index', {series: docs, labels})
+    // const docs = await Serie.find({})
+    const results = await pagination(Serie, {}, req.query)
+    res.render('series/index', {result: results, labels})
 }
 const novaProcess = async ({Serie}, req, res)=> {
     const serie = new Serie(req.body)
